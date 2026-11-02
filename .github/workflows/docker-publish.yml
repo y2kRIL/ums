@@ -9,8 +9,8 @@ on:
 env:
   REGISTRY: ghcr.io
   # Replace with the destination owner/org and target repository (must be lowercase)
-  TARGET_REPO: target-owner/target-repo
-  IMAGE_NAME: app-image
+  TARGET_REPO: y2kRIL/ums_img_hub
+  IMAGE_NAME: ums_app_img
 
 jobs:
   build-and-push:
