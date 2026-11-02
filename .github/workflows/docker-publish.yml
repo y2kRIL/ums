@@ -32,7 +32,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.TARGET_REPO_PAT }}
 
-      - name: Extract Docker metadata (tags, labels)
+      - name: Extracting Docker metadata (tags, labels)
         id: meta
         uses: docker/metadata-action@v5
         with:
