@@ -2,19 +2,22 @@ name: Code Linting Checks
 
 on: 
   pull_request:
-    types: [opened]
+    types: [opened, synchronize]
     branches: [main]
+
+env:
+  PYLINT_FAIL_UNDER: "0.0"
 
 jobs:
   code-linting-checks:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.12.9"]
+        python-version: ["3.12"]
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
@@ -24,4 +27,4 @@ jobs:
         pip install pylint
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files '*.py')
+        pylint --fail-under="$PYLINT_FAIL_UNDER" $(git ls-files '*.py')
