@@ -7,7 +7,7 @@ on:
 env:
   REGISTRY: ghcr.io
   # Replace with the destination owner/org and target repository (must be lowercase)
-  TARGET_REPO: y2kRIL/ums_img_hub
+  TARGET_REPO: y2kril/ums_img_hub
   IMAGE_NAME: ums_app_img
 
 jobs:
@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      packages: write
 
     steps:
       - name: Check out source code
@@ -36,6 +37,6 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: latest
+          tags: ${{ env.REGISTRY }}/${{ env.TARGET_REPO }}/${{ env.IMAGE_NAME }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
